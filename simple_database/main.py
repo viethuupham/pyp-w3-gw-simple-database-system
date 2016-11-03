@@ -126,11 +126,17 @@ class DataBase(object):
         return self.tables
 
 
-
 def create_database(db_name):
+    """
+    Creates a new DataBase object and returns the connection object
+    to the brand new database.
+    """
     DataBase.create(db_name)
     return connect_database(db_name)
 
 
 def connect_database(db_name):
+    """
+    Connectes to an existing database, and returns the connection object.
+    """
     return DataBase(name=db_name)
