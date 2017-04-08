@@ -5,6 +5,53 @@ The fact that your database is using files underneath should be **COMPLETELY** h
 From the outside (public interface), the user must play with your database library as any other
 database client, without knowing how it works internally.
 
+
+## Files structure
+
+Each database will be represented as a folder with the DB name. The folder will contain many JSON files, one for each table in the database.
+
+All the JSON files must follow this structure:
+```javascript
+{
+  'columns': [
+    {'name': 'id', 'type': 'int'},
+    {'name': 'name', 'type': 'str'},
+    {'name': 'birth_date', 'type': 'date'},
+    {'name': 'nationality', 'type': 'str'},
+    {'name': 'alive', 'type': 'bool'},
+    // more column configurations
+  ],
+  'rows': [
+    {
+      'id': 1,
+      'name': 'Jorge Luis Borges',
+      'birth_date': '1899-08-24'  // it's the `isoformat()` of the Date object
+      'nationality': 'ARG',
+      'alive': false
+    },
+    {
+      'id': 2,
+      'name': 'Edgard Alan Poe',
+      'birth_date': '1809-01-19'
+      'nationality': 'USA',
+      'alive': false
+    },
+    // more rows
+  ]
+}
+```
+
+This would be an example of the file structure for the previous `library` database:
+```
+/tmp
+... simple_database
+...... library
+......... authors.json
+......... books.json
+```
+
+## Usage
+
 To start using a database, you can either create a new database:
 
 ```python
